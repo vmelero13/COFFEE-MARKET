@@ -61,6 +61,41 @@ Este dataset contiene tanto las métricas originales de comercio internacional c
 
 ---
 
+## Dataset global complementario
+
+Además del dataset principal centrado en la Unión Europea, se genera un segundo dataset procesado:
+
+`trade_global_2020_2025.csv`
+
+Este dataset conserva todos los países disponibles en UN Comtrade y se utiliza como capa de benchmark internacional dentro del dashboard.
+
+Características principales:
+
+- 2.485 registros.
+- 176 países.
+- Cobertura global.
+- Mismas categorías de producto utilizadas en el análisis europeo.
+
+Variables principales:
+
+- `year`
+- `country_code`
+- `country`
+- `commodity_code`
+- `product_group`
+- `sector`
+- `import_value_usd`
+- `net_weight_kg`
+- `avg_price_usd_kg`
+
+Su objetivo es contextualizar el análisis de la Unión Europea frente al mercado mundial sin modificar el foco principal del proyecto.
+
+--- 
+
+**Nota:** El dataset global se construye exclusivamente a partir de UN Comtrade y se utiliza como referencia comparativa internacional. El dataset europeo incorpora además variables demográficas y económicas procedentes de World Bank.
+
+---
+
 ## Diagrama del modelo actual
 
 ![Modelo actual](images/current_data_model.png)
@@ -122,6 +157,7 @@ Variables principales:
 - net_weight_kg_per_capita
 
 ---
+
 
 ## Diagrama del modelo futuro
 

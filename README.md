@@ -187,6 +187,8 @@ COFFEE-MARKET/
 ├── data/
 │   ├── raw/
 │   └── processed/
+│       ├── trade_enriched_complete_2020_2024.csv
+│       └── trade_global_2020_2025.csv
 │
 ├── notebooks/
 │   └── 01_eda_un_comtrade.ipynb
