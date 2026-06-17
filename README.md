@@ -1,5 +1,6 @@
 # COFFEE-MARKET
-Business intelligence project to identify blue ocean opportunities for specialty coffee expansion across European markets
+
+Business Intelligence project to identify Blue Ocean opportunities for specialty coffee expansion across European markets.
 
 # Coffee Market Intelligence: Oportunidades Blue Ocean para el Café de Especialidad en Europa
 
@@ -24,12 +25,12 @@ El resultado final será un dashboard interactivo desarrollado en Streamlit y de
 - Analizar la evolución del mercado del café y del cacao en Europa.
 - Identificar países con alta demanda y potencial de crecimiento.
 - Comparar tendencias de importación entre café y cacao.
-- Construir un indicador propio de atractivo de mercado (Blue Ocean Score).
+- Diseñar un indicador propio de atractivo de mercado (Blue Ocean Score).
 - Comunicar los resultados mediante un dashboard interactivo orientado a usuarios no técnicos.
 
 ---
 
-Hipótesis de negocio
+## Hipótesis de negocio
 
 El consumo de café en Europa presenta diferencias significativas entre países. Sin embargo, los mercados con mayor volumen no siempre representan las mejores oportunidades para el café de especialidad.
 
@@ -62,37 +63,115 @@ Como contraste estratégico, se analizará también el mercado del cacao para ev
 
 ## Fuentes de datos
 
-### Dataset principal
+### Dataset principal: Comercio internacional
 
-Base de datos de comercio internacional:
+**UN Comtrade Database**
 
-- UN Comtrade
-- Categorías analizadas:
-  - Café (HS 0901)
-  - Cacao (HS 1801 / HS 1806)
+Datos de importaciones de café y cacao para países de la Unión Europea.
 
-### Datasets complementarios
+Productos analizados:
 
-- World Bank
-  - Población
-  - PIB per cápita
+- HS 0901 – Café
+- HS 1801 – Cacao en grano
+- HS 1806 – Chocolate y preparados con cacao
 
-Fuentes adicionales potenciales:
+Periodo analizado:
 
-- Eurostat
-- FAOSTAT
+- 2020–2024
+
+Variables principales:
+
+- País importador
+- Año
+- Valor comercial (USD)
+- Peso neto (kg)
+- País socio comercial
+- Código de producto
+- Descripción del producto
+
+Fuente:
+
+- https://comtradeplus.un.org/
+
+---
+
+### Dataset complementario: Indicadores socioeconómicos
+
+**World Bank Open Data**
+
+Indicadores utilizados:
+
+- Population, total (SP.POP.TOTL)
+- GDP per capita, current US$ (NY.GDP.PCAP.CD)
+
+Periodo analizado:
+
+- 2020–2024
+
+Fuente:
+
+- https://data.worldbank.org/
+
+---
+
+### Nota sobre el periodo de análisis
+
+Aunque los datos de comercio incluyen registros de 2025, el análisis final se limita al periodo 2020–2024 debido a la ausencia de indicadores socioeconómicos completos para 2025 en World Bank.
+
+---
+
+## Organización de los datos
+
+Los datasets utilizados en el proyecto se almacenan siguiendo una estructura que separa los datos originales descargados de las fuentes oficiales de los datos procesados utilizados para el análisis y el dashboard.
+
+```text
+data/
+│
+├── raw/
+│   │
+│   ├── un_comtrade/
+│   │   └── un_comtrade_coffee_cocoa_2020_2025.csv
+│   │
+│   ├── worldbank_population/
+│   │   ├── wb_population_data.csv
+│   │   ├── wb_population_country_metadata.csv
+│   │   └── wb_population_indicator_metadata.csv
+│   │
+│   └── worldbank_gdp/
+│       ├── wb_gdp_per_capita_data.csv
+│       ├── wb_gdp_country_metadata.csv
+│       └── wb_gdp_indicator_metadata.csv
+│
+└── processed/
+    └── trade_enriched_complete_2020_2024.csv
+```
+
+La carpeta `raw/` contiene los datos originales descargados de las fuentes oficiales sin modificaciones.
+
+La carpeta `processed/` contiene los datasets limpios, transformados y enriquecidos utilizados tanto en el análisis exploratorio como en el dashboard interactivo.
+
+---
+
+## Documentación adicional
+
+La documentación técnica del proyecto se encuentra en la carpeta `docs/`:
+
+- `data_dictionary.md`
+- `data_model.md`
+- `methodology.md`
+- `data_governance_biases.md`
 
 ---
 
 ## Indicadores clave (KPIs)
 
-- Valor total importado
-- Volumen importado
-- Precio medio por kilogramo
-- Crecimiento interanual
-- Importaciones per cápita
-- Ranking de mercados
-- Blue Ocean Score
+- Valor total importado.
+- Volumen importado.
+- Precio medio por kilogramo.
+- Crecimiento interanual.
+- Importaciones per cápita.
+- Ranking de mercados.
+- Blue Ocean Score.
 
 ---
 
@@ -102,68 +181,49 @@ Fuentes adicionales potenciales:
 COFFEE-MARKET/
 │
 ├── app/
-│   ├── main.py
-│   ├── pages/
-│   │   ├── 1_market_overview.py
-│   │   ├── 2_blue_ocean_score.py
-│   │   ├── 3_coffee_vs_cocoa.py
-│   │   └── 4_governance_biases.py
-│   │
-│   └── components/
-│       ├── charts.py
-│       ├── filters.py
-│       └── kpis.py
+│   ├── components/
+│   └── pages/
 │
 ├── data/
 │   ├── raw/
-│   ├── processed/
-│   └── README_data_sources.md
+│   └── processed/
 │
 ├── notebooks/
 │   └── 01_eda_un_comtrade.ipynb
 │
 ├── src/
+│   ├── config.py
 │   ├── data_cleaning.py
 │   ├── feature_engineering.py
-│   ├── metrics.py
-│   └── config.py
-│
-├── powerbi/
-│   ├── coffee_cocoa_europe_dashboard.pbix
-│   └── dax_measures.md
+│   └── metrics.py
 │
 ├── docs/
-│   ├── data_governance_biases.md
+│   ├── data_dictionary.md
+│   ├── data_model.md
 │   ├── methodology.md
-│   └── presentation_script.md
+│   └── data_governance_biases.md
 │
 ├── assets/
-│   └── images/
 │
-├── .gitignore
-├── README.md
+├── streamlit_app.py
 ├── requirements.txt
-└── streamlit_app.py
+├── README.md
+└── .gitignore
 ```
 
 ### Descripción de carpetas
 
-| Carpeta           | Descripción                                                           |
-| ----------------- | --------------------------------------------------------------------- |
-| `app/`            | Aplicación principal de Streamlit y páginas del dashboard.            |
-| `components/`     | Componentes reutilizables para gráficos, filtros e indicadores KPI.   |
-| `data/raw/`       | Datos originales descargados de las fuentes oficiales.                |
-| `data/processed/` | Datos limpios y transformados para análisis y visualización.          |
-| `notebooks/`      | Análisis exploratorio de datos (EDA) y validación de hipótesis.       |
-| `src/`            | Scripts de limpieza, transformación y cálculo de métricas de negocio. |
-| `powerbi/`        | Versión alternativa del proyecto en Power BI y documentación DAX.     |
-| `docs/`           | Documentación metodológica, gobernanza y presentación ejecutiva.      |
-| `assets/`         | Imágenes y recursos gráficos utilizados en el proyecto.               |
+| Carpeta | Descripción |
+|----------|----------|
+| `app/` | Aplicación principal de Streamlit y páginas del dashboard. |
+| `data/raw/` | Datos originales descargados de las fuentes oficiales. |
+| `data/processed/` | Datos limpios y transformados para análisis y visualización. |
+| `notebooks/` | Análisis exploratorio de datos (EDA) y validación de hipótesis. |
+| `src/` | Scripts de limpieza, transformación y cálculo de métricas de negocio. |
+| `docs/` | Documentación metodológica, modelo de datos y diccionario de variables. |
+| `assets/` | Imágenes y recursos gráficos utilizados en el proyecto. |
 
 Esta estructura busca separar claramente la adquisición de datos, el análisis, la lógica de negocio y la visualización para facilitar el mantenimiento y la reproducibilidad del proyecto.
-
-```
-```
 
 ---
 
@@ -181,7 +241,7 @@ Esta estructura busca separar claramente la adquisición de datos, el análisis,
 
 ## Consideraciones sobre gobernanza y sesgos
 
-El análisis tendrá en cuenta diversas limitaciones inherentes a los datos:
+El análisis tiene en cuenta diversas limitaciones inherentes a los datos:
 
 - Las importaciones no representan necesariamente el consumo real.
 - Algunos países funcionan como centros logísticos y de reexportación.
