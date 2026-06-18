@@ -203,6 +203,22 @@ def apply_velluto_style():
             fill: {VELLUTO_SECONDARY_GOLD} !important;
         }}
 
+        /* ==========================================================
+       TARJETAS PARA LIMITACIONES Y SESGOS
+       ----------------------------------------------------------
+       Variante visual alineada con la identidad Velluto.
+       Se utiliza en la página de Limitaciones para sustituir
+       los componentes azules por tarjetas corporativas.
+       ========================================================== */
+
+        .bias-card {{
+        background-color: {VELLUTO_WHITE};
+        border-left: 6px solid {VELLUTO_GOLD};
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }}
+
         </style>
         """,
         unsafe_allow_html=True
