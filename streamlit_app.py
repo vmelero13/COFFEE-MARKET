@@ -31,7 +31,7 @@ from src.dashboard_pages.limitations import render_limitations
 # ==========================================================
 
 st.set_page_config(
-    page_title="Análisis del Mercado del Café",
+    page_title="Velluto Market Intelligence",
     page_icon="☕",
     layout="wide"
 )
