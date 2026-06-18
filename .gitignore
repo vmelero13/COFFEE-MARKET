@@ -1,2 +1,14 @@
-.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
 .venv/
+venv/
+
+# Mac
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/

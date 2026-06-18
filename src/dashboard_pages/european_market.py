@@ -9,7 +9,8 @@ from src.ui import (
     VELLUTO_SECONDARY_GOLD,
     VELLUTO_BLACK,
     VELLUTO_WHITE,
-    render_kpi
+    render_kpi,
+    render_download_button
 )
 
 from src.kpis import format_currency
@@ -196,3 +197,15 @@ def render_european_market(filtered_data):
     )
 
     st.plotly_chart(fig_ranking_pc, use_container_width=True)
+
+    # ------------------------------------------------------
+    # DESCARGA DE DATOS
+    # ------------------------------------------------------
+    # Exporta los datos europeos filtrados utilizados
+    # en esta vista.
+    # ------------------------------------------------------
+
+    render_download_button(
+        filtered_data,
+        "mercado_europeo_datos_filtrados.csv"
+    )

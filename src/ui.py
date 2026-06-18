@@ -297,3 +297,20 @@ def render_kpi(label, value):
         """,
         unsafe_allow_html=True
     )
+
+def render_download_button(data, file_name):
+    """
+    Renderiza un botón para descargar los datos filtrados.
+
+    El usuario descarga exactamente el dataframe que está viendo
+    según los filtros aplicados en el dashboard.
+    """
+
+    csv_data = data.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+        label="Descargar datos filtrados",
+        data=csv_data,
+        file_name=file_name,
+        mime="text/csv"
+    )

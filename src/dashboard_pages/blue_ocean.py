@@ -10,7 +10,8 @@ from src.ui import (
     VELLUTO_SECONDARY_GOLD,
     VELLUTO_BLACK,
     VELLUTO_WHITE,
-    render_kpi
+    render_kpi,
+    render_download_button
 )
 
 from src.kpis import format_currency
@@ -204,6 +205,46 @@ def render_blue_ocean(filtered_data):
             f"{avg_score:,.1f}" if not np.isnan(avg_score) else "N/A"
         )
 
+        # ------------------------------------------------------
+    # INSIGHTS PRINCIPALES
+    # ------------------------------------------------------
+    # Se resumen los resultados clave del análisis para facilitar
+    # una lectura ejecutiva rápida.
+    # ------------------------------------------------------
+
+    st.markdown("## Principales insights")
+
+    st.markdown(
+        f"""
+        <div class="section-card">
+            <strong>{top_country}</strong> aparece como la mejor oportunidad según el Blue Ocean Score,
+            al combinar señales favorables de demanda, renta, crecimiento y menor saturación relativa.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
+        <div class="section-card">
+            <strong>{top_growth_country}</strong> destaca por presentar el mayor crecimiento relativo
+            dentro del periodo analizado.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        """
+        <div class="section-card">
+            Los resultados deben interpretarse como una priorización inicial.
+            Antes de tomar una decisión comercial, sería recomendable validar cada mercado
+            con datos de consumo real, competencia y canales de distribución.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     # ------------------------------------------------------
     # RANKING DE OPORTUNIDAD
     # ------------------------------------------------------
@@ -316,47 +357,53 @@ def render_blue_ocean(filtered_data):
 
     st.plotly_chart(fig_scatter, use_container_width=True)
 
+   # ------------------------------------------------------
+    # CONCLUSIÓN EJECUTIVA
     # ------------------------------------------------------
-    # METODOLOGÍA
-    # ------------------------------------------------------
-    # Se explica el indicador en lenguaje ejecutivo.
-    # El objetivo es que el usuario entienda la lógica del score
-    # sin necesidad de revisar el código.
+    # Se resume la lectura principal del ranking sin entrar
+    # en el detalle metodológico, que queda documentado en docs/.
     # ------------------------------------------------------
 
-    st.markdown("## Metodología del Blue Ocean Score")
+    st.markdown("## Conclusión ejecutiva")
 
-    st.markdown(
-        """
-        <div class="section-card">
-            El Blue Ocean Score es un indicador compuesto diseñado para identificar
-            mercados europeos con potencial de expansión para Velluto.
-            El modelo prioriza países que combinan señales favorables de demanda,
-            capacidad adquisitiva, crecimiento reciente y menor saturación relativa.
-        </div>
-        """,
-        unsafe_allow_html=True
+    insight_1, insight_2 = st.columns(2)
+
+    with insight_1:
+        st.markdown(
+            f"""
+            <div class="section-card">
+                <strong>{top_country}</strong> representa la mejor oportunidad según el Blue Ocean Score.
+                El resultado sugiere una combinación favorable de demanda relativa,
+                poder adquisitivo, crecimiento y menor saturación.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with insight_2:
+        st.markdown(
+            f"""
+            <div class="section-card">
+                <strong>{top_growth_country}</strong> destaca como el mercado con mayor crecimiento
+                dentro del periodo analizado, aunque crecimiento y oportunidad no siempre coinciden.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.caption(
+        "El Blue Ocean Score es un indicador propio de priorización. "
+        "La metodología completa y sus limitaciones están documentadas en la carpeta docs/."
     )
 
-    st.markdown("### Componentes del indicador")
+    # ------------------------------------------------------
+    # DESCARGA DE RESULTADOS
+    # ------------------------------------------------------
+    # Exporta la tabla final de países con el Blue Ocean Score
+    # y sus componentes principales.
+    # ------------------------------------------------------
 
-    st.info(
-        """
-        El indicador combina cuatro variables normalizadas en escala 0-100:
-
-        - 30% Importación per cápita.
-        - 25% PIB per cápita.
-        - 25% Crecimiento de las importaciones.
-        - 20% Menor saturación relativa.
-        """
-    )
-
-    st.markdown("### Interpretación")
-
-    st.success(
-        """
-        Una puntuación elevada no implica necesariamente que el país sea el mayor mercado,
-        sino que presenta una combinación atractiva de poder adquisitivo, intensidad importadora,
-        crecimiento y espacio relativo para competir.
-        """
+    render_download_button(
+        country_data,
+        "blue_ocean_score_results.csv"
     )

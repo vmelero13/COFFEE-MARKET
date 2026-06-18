@@ -8,7 +8,8 @@ from src.ui import (
     VELLUTO_SECONDARY_GOLD,
     VELLUTO_WHITE,
     VELLUTO_GREEN,
-    render_kpi
+    render_kpi,
+    render_download_button
 )
 
 from src.kpis import format_currency, format_weight
@@ -289,4 +290,16 @@ def render_coffee_vs_cocoa(filtered_data, eu_data, global_data):
         </div>
         """,
         unsafe_allow_html=True
+    )
+
+    # ------------------------------------------------------
+    # DESCARGA DE DATOS
+    # ------------------------------------------------------
+    # Permite exportar los datos filtrados utilizados
+    # para la comparación entre café y cacao.
+    # ------------------------------------------------------
+
+    render_download_button(
+        filtered_data,
+        "cafe_vs_cacao_datos_filtrados.csv"
     )

@@ -154,12 +154,15 @@ La carpeta `processed/` contiene los datasets limpios, transformados y enriqueci
 
 ## Documentación adicional
 
-La documentación técnica del proyecto se encuentra en la carpeta `docs/`:
+La documentación del proyecto se encuentra en la carpeta `docs/`:
 
 - `data_dictionary.md`
 - `data_model.md`
 - `methodology.md`
 - `data_governance_biases.md`
+- `conclusions.md`
+
+Esta documentación incluye el diccionario de datos, el modelo de datos, la metodología utilizada, el análisis de sesgos y las conclusiones ejecutivas derivadas del estudio.
 
 ---
 
@@ -168,9 +171,10 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs/`:
 - Valor total importado.
 - Volumen importado.
 - Precio medio por kilogramo.
-- Crecimiento interanual.
+- Crecimiento de las importaciones.
 - Importaciones per cápita.
 - Ranking de mercados.
+- Mercado líder por categoría.
 - Blue Ocean Score.
 
 ---
@@ -180,9 +184,8 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs/`:
 ```text
 COFFEE-MARKET/
 │
-├── app/
-│   ├── components/
-│   └── pages/
+├── assets/
+│   └── images/
 │
 ├── data/
 │   ├── raw/
@@ -190,22 +193,28 @@ COFFEE-MARKET/
 │       ├── trade_enriched_complete_2020_2024.csv
 │       └── trade_global_2020_2025.csv
 │
+├── docs/
+│   ├── conclusions.md
+│   ├── data_dictionary.md
+│   ├── data_governance_biases.md
+│   ├── data_model.md
+│   └── methodology.md
+│
 ├── notebooks/
 │   └── 01_eda_un_comtrade.ipynb
 │
 ├── src/
-│   ├── config.py
-│   ├── data_cleaning.py
-│   ├── feature_engineering.py
-│   └── metrics.py
-│
-├── docs/
-│   ├── data_dictionary.md
-│   ├── data_model.md
-│   ├── methodology.md
-│   └── data_governance_biases.md
-│
-├── assets/
+│   ├── dashboard_pages/
+│   │   ├── blue_ocean.py
+│   │   ├── coffee_vs_cocoa.py
+│   │   ├── european_market.py
+│   │   ├── executive_summary.py
+│   │   └── limitations.py
+│   │
+│   ├── data_loader.py
+│   ├── filters.py
+│   ├── kpis.py
+│   └── ui.py
 │
 ├── streamlit_app.py
 ├── requirements.txt
@@ -217,27 +226,60 @@ COFFEE-MARKET/
 
 | Carpeta | Descripción |
 |----------|----------|
-| `app/` | Aplicación principal de Streamlit y páginas del dashboard. |
+| `assets/` | Recursos gráficos utilizados en el dashboard. |
 | `data/raw/` | Datos originales descargados de las fuentes oficiales. |
-| `data/processed/` | Datos limpios y transformados para análisis y visualización. |
-| `notebooks/` | Análisis exploratorio de datos (EDA) y validación de hipótesis. |
-| `src/` | Scripts de limpieza, transformación y cálculo de métricas de negocio. |
-| `docs/` | Documentación metodológica, modelo de datos y diccionario de variables. |
-| `assets/` | Imágenes y recursos gráficos utilizados en el proyecto. |
+| `data/processed/` | Datos limpios y enriquecidos para análisis y visualización. |
+| `docs/` | Documentación metodológica, gobernanza, modelo de datos y conclusiones. |
+| `notebooks/` | Análisis exploratorio de datos (EDA). |
+| `src/dashboard_pages/` | Páginas funcionales del dashboard Streamlit. |
+| `src/` | Componentes reutilizables, filtros, KPIs y lógica de negocio. |
 
 Esta estructura busca separar claramente la adquisición de datos, el análisis, la lógica de negocio y la visualización para facilitar el mantenimiento y la reproducibilidad del proyecto.
 
 ---
 
+## Dashboard interactivo
+
+El dashboard desarrollado en Streamlit se estructura en cinco áreas principales:
+
+### 1. Resumen ejecutivo
+
+- Visión global del mercado.
+- KPIs principales.
+- Mapas y rankings de importación.
+
+### 2. Mercado europeo
+
+- Análisis específico de los países europeos.
+- Comparación entre renta, población e intensidad importadora.
+
+### 3. Café vs cacao
+
+- Comparativa entre ambas categorías.
+- Evolución temporal.
+- Posicionamiento relativo de Europa frente al mercado global.
+
+### 4. Blue Ocean Score
+
+- Identificación de mercados prioritarios.
+- Ranking de oportunidad.
+- Visualización geográfica del indicador.
+
+### 5. Limitaciones y sesgos
+
+- Transparencia metodológica.
+- Restricciones de los datos utilizados.
+- Consideraciones para la interpretación de resultados.
+
+---
+
 ## Metodología
 
-1. Recopilación de datos.
-2. Limpieza y transformación de datos.
-3. Análisis exploratorio (EDA).
-4. Creación de variables de negocio.
-5. Cálculo de indicadores clave.
-6. Desarrollo del dashboard interactivo.
-7. Elaboración de recomendaciones estratégicas.
+La metodología completa utilizada para el desarrollo del proyecto se documenta en:
+
+- `docs/methodology.md`
+
+Este documento describe en detalle las fases de obtención de datos, limpieza, enriquecimiento, construcción del Blue Ocean Score, desarrollo del dashboard y elaboración de recomendaciones estratégicas.
 
 ---
 
@@ -251,10 +293,35 @@ El análisis tiene en cuenta diversas limitaciones inherentes a los datos:
 - El precio medio por kilogramo no refleja necesariamente la calidad del producto.
 - Las categorías comerciales utilizadas pueden incluir distintos tipos de café y cacao.
 
-Estas limitaciones serán documentadas y explicadas dentro del dashboard para evitar interpretaciones erróneas.
+Estas consideraciones se documentan de forma detallada en:
+
+- `docs/data_governance_biases.md`
+- `docs/methodology.md`
+
+Adicionalmente, el dashboard incorpora una sección específica de **Limitaciones y sesgos** para facilitar la correcta interpretación de los resultados y evitar conclusiones erróneas.
 
 ---
 
-## Resultado esperado
+## Resultados obtenidos
 
-Desarrollar un dashboard interactivo desplegado en la nube que permita identificar oportunidades de mercado para el café de especialidad en Europa, compararlas con el mercado del cacao y proporcionar recomendaciones estratégicas basadas en datos.
+El proyecto ha permitido:
+
+- Construir un dataset enriquecido combinando datos de comercio internacional e indicadores socioeconómicos.
+- Analizar la evolución del mercado del café y del cacao entre 2020 y 2024.
+- Comparar el comportamiento de Europa frente al mercado global.
+- Diseñar un indicador propio de priorización de mercados (Blue Ocean Score).
+- Desarrollar un dashboard interactivo para la exploración de oportunidades comerciales.
+
+---
+
+## Resultado final
+
+El proyecto culmina en un dashboard interactivo desarrollado en Streamlit que permite:
+
+- Explorar mercados europeos de café y cacao mediante filtros dinámicos.
+- Analizar indicadores comerciales y socioeconómicos.
+- Comparar Europa frente al mercado global.
+- Identificar mercados prioritarios mediante el Blue Ocean Score.
+- Exportar los resultados filtrados para su análisis posterior.
+
+La aplicación constituye una herramienta de apoyo a la toma de decisiones estratégicas, permitiendo identificar y priorizar oportunidades de expansión internacional mediante un enfoque basado en datos.

@@ -9,7 +9,8 @@ from src.ui import (
     VELLUTO_SECONDARY_GOLD,
     VELLUTO_BLACK,
     VELLUTO_WHITE,
-    render_kpi
+    render_kpi,
+    render_download_button
 )
 
 from src.kpis import (
@@ -166,3 +167,15 @@ def render_executive_summary(filtered_data):
     )
 
     st.plotly_chart(fig_ranking, use_container_width=True)
+
+    # ------------------------------------------------------
+    # DESCARGA DE DATOS
+    # ------------------------------------------------------
+    # Permite descargar los datos resultantes de los filtros
+    # aplicados en la vista de resumen ejecutivo.
+    # ------------------------------------------------------
+
+    render_download_button(
+        filtered_data,
+        "resumen_ejecutivo_datos_filtrados.csv"
+    )
