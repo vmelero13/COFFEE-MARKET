@@ -197,6 +197,67 @@ El análisis se limita al periodo:
 
 garantizando así una cobertura homogénea de todas las variables utilizadas.
 
+## 8. Sesgos derivados del Blue Ocean Score
+
+El Blue Ocean Score es un indicador compuesto diseñado específicamente para este proyecto con el objetivo de priorizar mercados potencialmente atractivos para una estrategia de expansión internacional.
+
+Su construcción implica decisiones metodológicas que pueden influir en los resultados obtenidos.
+
+### Selección de variables
+
+El indicador se construye a partir de cuatro dimensiones:
+
+- Importación per cápita.
+- PIB per cápita.
+- Crecimiento de las importaciones.
+- Saturación relativa.
+
+### Definición de saturación relativa
+
+La saturación relativa se utiliza como una aproximación al nivel de madurez de cada mercado.
+
+En este proyecto se estima indirectamente a partir del peso relativo de las importaciones dentro del conjunto de países analizados.
+
+La hipótesis subyacente es que los mercados con mayores niveles de importación suelen presentar una competencia más intensa y un menor espacio relativo para nuevos entrantes.
+
+Esta aproximación no mide directamente la competencia real del mercado y debe interpretarse como una simplificación metodológica.
+
+La inclusión de estas variables responde a una hipótesis de negocio concreta y no constituye una medida universalmente aceptada del atractivo de mercado.
+
+### Asignación de pesos
+
+Los pesos utilizados son:
+
+| Variable | Peso |
+|-----------|------:|
+| Importación per cápita | 30% |
+| PIB per cápita | 25% |
+| Crecimiento de las importaciones | 25% |
+| Saturación relativa | 20% |
+
+Estos pesos han sido definidos mediante criterio analítico y no mediante técnicas estadísticas avanzadas ni validación externa.
+
+Por tanto, pequeñas modificaciones en los pesos podrían alterar parcialmente la clasificación final de los países.
+
+### Interpretación del resultado
+
+El Blue Ocean Score debe interpretarse como una herramienta de priorización relativa entre mercados y no como una predicción de ventas, rentabilidad o éxito comercial.
+
+Su principal utilidad consiste en facilitar la comparación homogénea entre países utilizando criterios consistentes.
+
+### Limitaciones del indicador
+
+El Blue Ocean Score no incorpora variables relevantes que podrían influir en el atractivo real de un mercado, tales como:
+
+- Consumo real de café.
+- Número de competidores.
+- Presencia de marcas premium.
+- Canales de distribución especializados.
+- Indicadores de hostelería y restauración.
+- Preferencias del consumidor.
+
+Por tanto, el indicador debe entenderse como una herramienta exploratoria de priorización y no como una medida exhaustiva del potencial comercial.
+
 ---
 
 # Transformaciones realizadas para mejorar la calidad del dato
@@ -213,6 +274,7 @@ Durante el proceso de preparación se realizaron las siguientes acciones:
 - Creación de métricas de precio medio por kilogramo.
 - Verificación de registros duplicados.
 - Validación de consistencia entre fuentes.
+- Construcción del indicador compuesto Blue Ocean Score.
 
 ---
 
