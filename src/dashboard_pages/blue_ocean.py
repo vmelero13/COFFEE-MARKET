@@ -205,46 +205,6 @@ def render_blue_ocean(filtered_data):
             f"{avg_score:,.1f}" if not np.isnan(avg_score) else "N/A"
         )
 
-        # ------------------------------------------------------
-    # INSIGHTS PRINCIPALES
-    # ------------------------------------------------------
-    # Se resumen los resultados clave del análisis para facilitar
-    # una lectura ejecutiva rápida.
-    # ------------------------------------------------------
-
-    st.markdown("## Principales insights")
-
-    st.markdown(
-        f"""
-        <div class="section-card">
-            <strong>{top_country}</strong> aparece como la mejor oportunidad según el Blue Ocean Score,
-            al combinar señales favorables de demanda, renta, crecimiento y menor saturación relativa.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        f"""
-        <div class="section-card">
-            <strong>{top_growth_country}</strong> destaca por presentar el mayor crecimiento relativo
-            dentro del periodo analizado.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        """
-        <div class="section-card">
-            Los resultados deben interpretarse como una priorización inicial.
-            Antes de tomar una decisión comercial, sería recomendable validar cada mercado
-            con datos de consumo real, competencia y canales de distribución.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
     # ------------------------------------------------------
     # RANKING DE OPORTUNIDAD
     # ------------------------------------------------------
@@ -358,42 +318,45 @@ def render_blue_ocean(filtered_data):
     st.plotly_chart(fig_scatter, use_container_width=True)
 
    # ------------------------------------------------------
-    # CONCLUSIÓN EJECUTIVA
+    # CONCLUSIONES EJECUTIVAS
     # ------------------------------------------------------
-    # Se resume la lectura principal del ranking sin entrar
-    # en el detalle metodológico, que queda documentado en docs/.
+    # Se colocan al final de la página para que el usuario
+    # primero vea la evidencia: ranking, mapa y gráfico de relación.
+    # Después se presenta la interpretación ejecutiva.
     # ------------------------------------------------------
 
-    st.markdown("## Conclusión ejecutiva")
+    st.markdown("## Conclusiones ejecutivas")
 
-    insight_1, insight_2 = st.columns(2)
+    conclusion_1, conclusion_2 = st.columns(2)
 
-    with insight_1:
+    with conclusion_1:
         st.markdown(
             f"""
             <div class="section-card">
                 <strong>{top_country}</strong> representa la mejor oportunidad según el Blue Ocean Score.
-                El resultado sugiere una combinación favorable de demanda relativa,
-                poder adquisitivo, crecimiento y menor saturación.
+                El resultado refleja una combinación favorable de demanda relativa,
+                capacidad adquisitiva, crecimiento y menor saturación relativa frente
+                a otros mercados europeos.
             </div>
             """,
             unsafe_allow_html=True
         )
 
-    with insight_2:
+    with conclusion_2:
         st.markdown(
             f"""
             <div class="section-card">
                 <strong>{top_growth_country}</strong> destaca como el mercado con mayor crecimiento
-                dentro del periodo analizado, aunque crecimiento y oportunidad no siempre coinciden.
+                durante el periodo analizado. Sin embargo, crecimiento y oportunidad no siempre coinciden,
+                por lo que ambas métricas deben interpretarse conjuntamente.
             </div>
             """,
             unsafe_allow_html=True
         )
 
     st.caption(
-        "El Blue Ocean Score es un indicador propio de priorización. "
-        "La metodología completa y sus limitaciones están documentadas en la carpeta docs/."
+        "El Blue Ocean Score debe interpretarse como una herramienta de priorización relativa entre mercados. "
+        "La metodología completa y sus limitaciones están documentadas en la documentación del proyecto."
     )
 
     # ------------------------------------------------------
